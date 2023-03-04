@@ -11,7 +11,15 @@ const routes = [
   },
   {
     path: "/start",
-    children: [{ path: "", component: () => import("pages/StartPage.vue") }],
+    component: () => import("pages/StartPage.vue"),
+  },
+  {
+    path: "/signin",
+    component: () => import("pages/SignInPage.vue"),
+  },
+  {
+    path: "/otp",
+    component: () => import("pages/OTPPage.vue"),
   },
 
   // Always leave this as last one,

@@ -20,6 +20,8 @@ const db = getFirestore(firebase);
 const auth = getAuth(firebase);
 
 console.log("Firebase initialized");
+auth.languageCode = "th";
+
 export default boot(({ app }) => {
   app.config.globalProperties.$firebase = firebase;
   app.config.globalProperties.$analytics = analytics;

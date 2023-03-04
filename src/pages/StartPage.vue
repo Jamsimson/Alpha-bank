@@ -25,14 +25,13 @@
             color="green-12"
             text-color="indigo-6"
             unelevated
-            to="/home"
-            label="Sign up"
+            to="/signin"
+            label="Sign in"
             no-caps
-            width="200px"
             style="border-radius: 8px"
           />
           <p>
-            Already have an account? <a class="text-yellow-8" to="/">Sign in</a>
+            Don't have an account? <a class="text-yellow-8" to="/">Sign up</a>
           </p>
         </div>
       </q-page>
