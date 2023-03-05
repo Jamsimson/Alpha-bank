@@ -1,7 +1,6 @@
 <template>
-  <q-page class="q-pa-md">
-    <!-- title -->
-    <div class="text-h4 text-weight-bold">Setting</div>
+  <q-page class="flex flex-center">
+    <div class="text-h5">Transfer page</div>
   </q-page>
 </template>
 
@@ -9,6 +8,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "SettingPage",
+  name: "TransferPage",
 });
 </script>

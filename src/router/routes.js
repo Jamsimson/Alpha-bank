@@ -1,17 +1,21 @@
 
 const routes = [
   {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    path: '',
+    component: () => import('layouts/AppLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: 'home', component: () => import('pages/HomePage.vue') },
+      { path: 'services', component: () => import('pages/ServicesPage.vue') },
+      { path: 'setting', component: () => import('pages/SettingPage.vue') }
     ]
   },
   {
-    path: '/home',
+    path: '',
     component: () => import('layouts/AppLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/TestPage.vue') }
+      { path: 'test/:id', component: () => import('pages/TestPage.vue') },
+      { path: 'transfer', component: () => import('pages/TransferPage.vue') },
+
     ]
   },
 
