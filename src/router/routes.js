@@ -11,7 +11,7 @@ const routes = [
   },
   {
     path: '',
-    component: () => import('layouts/AppLayout.vue'),
+    component: () => import('layouts/TransferLayout.vue'),
     children: [
       { path: 'test/:id', component: () => import('pages/TestPage.vue') },
       { path: 'transfer', component: () => import('pages/TransferPage.vue') },

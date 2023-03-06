@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="q-pa-md">
     <div class="text-h5">Transfer page</div>
   </q-page>
 </template>
