@@ -33,11 +33,11 @@
           <div class="q-pa-md">
             Did't recieve?
             <!-- resend text -->
-            <q-text
+            <span
               class="text-indigo-6"
               style="cursor: pointer"
               @click="clearInput"
-              >Resend</q-text
+              >Resend</span
             >
           </div>
         </q-card>
@@ -57,23 +57,23 @@ export default defineComponent({
     // eslint-disable-next-line vue/no-unused-components
     VOtpInput,
   },
+  methods: {
+    handleOnComplete(value) {
+      console.log("OTP completed: ", value);
+      this.$router.push("/start");
+    },
+    handleOnChange(value) {
+      console.log("OTP changed: ", value);
+    },
+    clearInput() {
+      this.$refs.otpInput.clearInput();
+    },
+  },
 
   setup() {
     const otpInput = ref(null);
 
-    const handleOnComplete = (value) => {
-      console.log("OTP completed: ", value);
-    };
-
-    const handleOnChange = (value) => {
-      console.log("OTP changed: ", value);
-    };
-
-    const clearInput = () => {
-      otpInput.value.clearInput();
-    };
-
-    return { handleOnComplete, handleOnChange, clearInput, otpInput };
+    return { otpInput };
   },
 });
 </script>
