@@ -3,7 +3,6 @@
   <q-layout view="hHh Lpr fFf">
     <!-- center container -->
     <q-page-container>
-      <div id="recaptcha-container"></div>
       <q-page class="text-white bg-indigo-6 flex flex-center">
         <!-- recaptcha container -->
         <!-- card -->
@@ -15,8 +14,31 @@
             <div class="text-h6 q-pa-md text-center">OTP Verification</div>
             <p>
               Please enter the OTP code sent to your phone number
-              <span class="text-yellow-8">{{ storedPhone }}</span>
+              <!-- <span class="text-yellow-8">{{ storedPhone }}</span> -->
             </p>
+          </div>
+
+          <v-otp-input
+            ref="otpInput"
+            input-classes="otp-input"
+            separator=" "
+            :num-inputs="4"
+            :should-auto-focus="true"
+            :is-input-num="true"
+            :conditionalClass="['one', 'two', 'three', 'four']"
+            :placeholder="['*', '*', '*', '*']"
+            @on-change="handleOnChange"
+            @on-complete="handleOnComplete"
+          />
+          <div class="q-pa-md">
+            Did't recieve?
+            <!-- resend text -->
+            <q-text
+              class="text-indigo-6"
+              style="cursor: pointer"
+              @click="clearInput"
+              >Resend</q-text
+            >
           </div>
         </q-card>
       </q-page>
@@ -24,29 +46,59 @@
   </q-layout>
 </template>
 
-<script>
+<script >
 import { defineComponent } from "vue";
 import { ref } from "vue";
-import { signInWithEmailAndPassword } from "@firebase/auth";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import VOtpInput from "vue3-otp-input";
 
-const storedPhone = localStorage.getItem("storedPhone");
 export default defineComponent({
-  name: "SignIn",
-  setup() {
-    return {
-      tab: ref("phone"),
-      country: ref("+66"),
-    };
+  name: "OtpPage",
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    VOtpInput,
   },
-  data() {
-    return {
-      user: {
-        email: "",
-        password: "",
-        storedPhone: storedPhone,
-      },
+
+  setup() {
+    const otpInput = ref(null);
+
+    const handleOnComplete = (value) => {
+      console.log("OTP completed: ", value);
     };
+
+    const handleOnChange = (value) => {
+      console.log("OTP changed: ", value);
+    };
+
+    const clearInput = () => {
+      otpInput.value.clearInput();
+    };
+
+    return { handleOnComplete, handleOnChange, clearInput, otpInput };
   },
 });
 </script>
+<style>
+.otp-input {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+/* Background colour of an input field with value */
+.otp-input.is-complete {
+  background-color: #ffcc41;
+}
+.otp-input::-webkit-inner-spin-button,
+.otp-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::placeholder {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+</style>
