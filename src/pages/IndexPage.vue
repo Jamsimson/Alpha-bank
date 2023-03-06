@@ -49,7 +49,7 @@ export default defineComponent({
           });
         });
       } else {
-        this.$router.push("/start");
+        this.$router.push("start");
       }
     });
   },

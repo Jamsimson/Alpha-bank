@@ -60,7 +60,7 @@ export default defineComponent({
   methods: {
     handleOnComplete(value) {
       console.log("OTP completed: ", value);
-      this.$router.push("/start");
+      this.$router.push("/home");
     },
     handleOnChange(value) {
       console.log("OTP changed: ", value);
