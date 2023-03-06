@@ -7,12 +7,14 @@ export const alpha_database = defineStore({
             {
                 id: 1,
                 email: "peter.p@gmail.com",
+                phone: "099-123-4567",
                 username: "Peter",
                 password: "zxc123**"
             },
             {
                 id: 2,
                 email: "minisong@gmail.com",
+                phone: "099-234-4567",
                 username: "Mini",
                 password: "zxc123**"
             },
