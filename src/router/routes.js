@@ -15,6 +15,7 @@ const routes = [
     children: [
       { path: 'test/:id', component: () => import('pages/TestPage.vue') },
       { path: 'transfer', component: () => import('pages/TransferPage.vue') },
+      { path: 'my-qrcode', component: () => import('pages/QrPage.vue') },
 
     ]
   },
