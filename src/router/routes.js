@@ -1,12 +1,9 @@
 const routes = [
   {
     path: "",
-    children: [{ path: "", component: () => import("pages/IndexPage.vue") }],
-  },
-  {
-    path: "/",
     component: () => import("layouts/AppLayout.vue"),
     children: [
+      { path: "", component: () => import("pages/HomePage.vue") },
       { path: "home", component: () => import("pages/HomePage.vue") },
       { path: "services", component: () => import("pages/ServicesPage.vue") },
       { path: "setting", component: () => import("pages/SettingPage.vue") },
@@ -16,9 +13,9 @@ const routes = [
     path: "/",
     component: () => import("layouts/TransferLayout.vue"),
     children: [
-      { path: 'test/:id', component: () => import('pages/TestPage.vue') },
-      { path: 'transfer', component: () => import('pages/TransferPage.vue') },
-      { path: 'my-qrcode', component: () => import('pages/QrPage.vue') },
+      { path: "test/:id", component: () => import("pages/TestPage.vue") },
+      { path: "transfer", component: () => import("pages/TransferPage.vue") },
+      { path: "my-qrcode", component: () => import("pages/QrPage.vue") },
     ],
   },
   {

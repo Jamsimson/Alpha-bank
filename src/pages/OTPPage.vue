@@ -60,7 +60,7 @@ export default defineComponent({
   methods: {
     handleOnComplete(value) {
       console.log("OTP completed: ", value);
-      this.$router.push("/home");
+      alert("OTP is not available yet please use email verification");
     },
     handleOnChange(value) {
       console.log("OTP changed: ", value);

@@ -56,7 +56,7 @@
         </q-itme-section>
       </q-item>
       <q-separator spaced inset />
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple @click="logOut">
         <q-item-section avatar>
           <q-icon color="dark" name="sync_alt" />
         </q-item-section>
@@ -88,6 +88,14 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "SettingPage",
+  methods: {
+    // handle click
+    async logOut() {
+      await this.$auth.signOut();
+      console.log("User signed out!");
+      this.$router.push("/");
+    },
+  },
 });
 </script>
 <style>
