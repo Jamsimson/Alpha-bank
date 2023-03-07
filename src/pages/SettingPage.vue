@@ -56,7 +56,7 @@
         </q-itme-section>
       </q-item>
       <q-separator spaced inset />
-      <q-item clickable v-ripple @click="">
+      <q-item clickable v-ripple>
         <q-item-section avatar>
           <q-icon color="dark" name="sync_alt" />
         </q-item-section>
