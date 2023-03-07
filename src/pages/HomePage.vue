@@ -87,7 +87,7 @@
           <div class="col-4">
             <div class="col flex flex-center">
               <q-btn
-                to="/test"
+                to="`/my-qrcode/${id}`"
                 round
                 size="md"
                 text-color="dark"
@@ -150,9 +150,10 @@ export default defineComponent({
   data() {
     return {
       database: alpha_database(),
-      username: "Motana",
       userPofile: null,
       balance: 600000,
+      user: [],
+      user_account: [],
     };
   },
   methods: {
@@ -164,10 +165,10 @@ export default defineComponent({
       return date;
     },
   },
-  //   async methods() {
-  //     const id = this.$route.params.id;
-  //     console.log(id);
-  //   },
+  mounted() {
+    this.user = this.database.user[0];
+    console.log(`user: ${this.user.email} ${this.user.username}`);
+  },
 });
 </script>
 <style>

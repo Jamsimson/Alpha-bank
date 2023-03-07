@@ -12,7 +12,7 @@
             text-color="dark"
             color="warning"
             icon="sync_alt"
-            to="#"
+            to="/transfer"
           />
         </div>
         <div class="col flex flex-center text-caption">Transfer</div>
