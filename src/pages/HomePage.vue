@@ -9,7 +9,7 @@
             class="col q-pa-md text-h5 text-weight-bold"
             style="height: 74px"
           >
-            Hi {{ this.database.user[0].username }}
+            Hi {{ name }}
           </div>
           <!-- date now -->
           <div
@@ -38,7 +38,7 @@
           </div>
           <div class="vertical"></div>
           <div class="col-6 flex flex-center text-h5 text-weight-bolder">
-            $ {{ balance }}
+            $ {{ balance.toLocaleString() }}
           </div>
         </div>
       </q-card>
@@ -144,16 +144,48 @@
 
 <script>
 import { defineComponent } from "vue";
-import { alpha_database } from "../stores/database";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { onAuthStateChanged } from "@firebase/auth";
+
 export default defineComponent({
   name: "HomePage",
+  async mounted() {
+    onAuthStateChanged(this.$auth, async (user) => {
+      if (user) {
+        // uid = user.uid;
+        // console.log(uid);
+        const signedInUserEmail = user.email;
+        // console.log(this.signedInUser.email);
+        var q = query(
+          collection(this.$db, "users"),
+          where("email", "==", signedInUserEmail)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+          this.name = doc.data().name;
+          // get account data from another collection
+          q = query(
+            collection(this.$db, "accounts"),
+            where("owner", "==", doc.id)
+          );
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+            this.account.push(doc.data());
+            this.balance += doc.data().balance;
+          });
+        });
+      } else {
+        this.$router.push("start");
+      }
+    });
+  },
   data() {
     return {
-      database: alpha_database(),
-      userPofile: null,
-      balance: 600000,
-      user: [],
-      user_account: [],
+      name: "",
+      account: [],
+      balance: 0,
     };
   },
   methods: {
@@ -165,11 +197,11 @@ export default defineComponent({
       return date;
     },
   },
-  mounted() {
-    this.user = this.database.user[0];
-    console.log(`user: ${this.user.email} ${this.user.username}`);
-  },
 });
+//   async methods() {
+//     const id = this.$route.params.id;
+//     console.log(id);
+//   },
 </script>
 <style>
 .vertical {

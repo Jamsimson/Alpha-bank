@@ -7,7 +7,7 @@
             <img
               alt="Quasar logo"
               src="~assets/logo.png"
-              style="width: 100px; height: 100px"
+              style="width: 120px; height: 120px"
             />
           </div>
           <div class="text-h3 text-yellow-8 q-pt-lg">
@@ -20,19 +20,21 @@
           <div class="text-center">
             <p>Your finance, your control, with Alpha Banking.</p>
           </div>
-          <q-btn
-            class="q-mt-xl full-width"
-            color="green-12"
-            text-color="indigo-6"
-            unelevated
-            to="/signin"
-            label="Sign in"
-            no-caps
-            style="border-radius: 8px"
-          />
-          <p>
-            Don't have an account? <a class="text-yellow-8" to="/">Sign up</a>
-          </p>
+          <div class="q-pa-xl fixed-bottom">
+            <q-btn
+              class="q-mt-xl full-width"
+              color="green-12"
+              text-color="indigo-6"
+              unelevated
+              to="/signin"
+              label="Sign in"
+              no-caps
+              style="border-radius: 8px; height: 40px"
+            />
+            <p>
+              Don't have an account? <a class="text-yellow-8" to="/">Sign up</a>
+            </p>
+          </div>
         </div>
       </q-page>
     </q-page-container>

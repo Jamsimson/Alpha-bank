@@ -21,7 +21,6 @@ import { onAuthStateChanged } from "@firebase/auth";
 
 export default defineComponent({
   name: "IndexPage",
-  created() {},
   async mounted() {
     onAuthStateChanged(this.$auth, async (user) => {
       if (user) {
