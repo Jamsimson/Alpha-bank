@@ -174,6 +174,7 @@ export default defineComponent({
             console.log(`${doc.id} => ${doc.data()}`);
             this.account.push(doc.data());
             this.balance += doc.data().balance;
+            console.log(`${this.account.length}`);
           });
         });
       } else {

@@ -56,6 +56,16 @@
         </q-itme-section>
       </q-item>
       <q-separator spaced inset />
+      <q-item clickable v-ripple @click="">
+        <q-item-section avatar>
+          <q-icon color="dark" name="sync_alt" />
+        </q-item-section>
+        <q-item-section>Log out</q-item-section>
+        <q-itme-section class="flex flex-center">
+          <q-icon name="arrow_forward_ios" />
+        </q-itme-section>
+      </q-item>
+      <q-separator spaced inset />
     </q-list>
     <div
       class="text-caption text-weight-thin text-grey-7"
