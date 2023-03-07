@@ -3,14 +3,19 @@
   <q-layout view="hHh Lpr fFf">
     <!-- center container -->
     <q-page-container>
+      <!-- back button -->
+
       <!-- recaptcha container -->
       <div id="recaptcha-container"></div>
-      <q-page class="text-white bg-indigo-6 flex flex-center">
+      <q-page class="text-white bg-indigo-6">
+        <q-icon
+          class="text-left text-yellow-8 q-ma-lg"
+          name="arrow_back"
+          size="2.5em"
+          @click="this.$router.push('/start')"
+        />
         <!-- Welcome text -->
-        <div class="q-pa-md">
-          <div class="text-h3 text-yellow-8 q-pt-lg">
-            <p></p>
-          </div>
+        <div class="q-pa-lg">
           <div class="text-h4 q-pt-sm">
             <p>Welcome to ALPHA</p>
           </div>
@@ -20,13 +25,11 @@
         </div>
         <!-- card -->
         <q-card
-          style="border-radius: 20px; max-width: 400px; overflow: auto"
-          class="q-pa-md flex flex-center"
+          style="border-radius: 20px; min-height: 600px"
+          class="q-pa-md fixed-bottom"
         >
-          <div>
-            <div class="text-h6 text-black q-pa-md text-center">
-              Sign in with
-            </div>
+          <div class="text-center flex flex-center">
+            <div class="text-h6 text-black q-pa-md">Sign in with</div>
             <q-tabs
               v-model="tab"
               narrow-indicator
@@ -34,52 +37,102 @@
               align="justify"
               class="text-primary"
             >
-              <q-tab name="phone" label="Phone number" />
-              <q-tab name="idcard" label="Identification Number" />
+              <q-btn-group v-model="tab" rounded>
+                <q-btn outline color="indigo-6" label="Phone number">
+                  <q-tab rounded class="q-overlay absolute-full" name="phone" />
+                </q-btn>
+                <q-btn outline color="indigo-6" label="identification Number">
+                  <q-tab class="q-overlay absolute-full" name="idcard"
+                /></q-btn>
+              </q-btn-group>
             </q-tabs>
-          </div>
-          <q-tab-panels class="text-black text-center" v-model="tab" animated>
-            <q-tab-panel name="phone">
-              <div class="text-h6">Phone number</div>
-              <q-input
-                rounded
-                standout
-                v-model="phoneNumber"
-                placeholder="Enter your phone number"
-              >
-                <template v-slot:prepend>
-                  <!-- dropdown country flag  -->
-                  <q-select
-                    v-model="country"
-                    :options="['+66', '+1', '+44']"
+            <q-tab-panels class="text-black q-mt-xl" v-model="tab" animated>
+              <q-tab-panel name="phone">
+                <div class="text-h6">Phone number</div>
+                <q-input
+                  rounded
+                  standout
+                  v-model="phoneNumber"
+                  placeholder="Enter your phone number"
+                >
+                  <template v-slot:prepend>
+                    <!-- dropdown country flag  -->
+                    <q-select
+                      v-model="country"
+                      :options="['+66', '+1', '+44']"
+                      rounded
+                      standout
+                      dense
+                      style="width: 70px"
+                    >
+                    </q-select>
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="phone" color="black" />
+                  </template>
+                </q-input>
+                <q-btn
+                  class="q-mt-xl full-width"
+                  color="green-12"
+                  text-color="indigo-6"
+                  unelevated
+                  label="Continue"
+                  no-caps
+                  style="border-radius: 8px; height: 40px"
+                  @click="this.$router.push('/otp')"
+                />
+              </q-tab-panel>
+
+              <q-tab-panel name="idcard">
+                <div>
+                  <div class="text-left">identification Number</div>
+                  <q-input
                     rounded
                     standout
-                    dense
-                    style="width: 70px"
+                    v-model="user.email"
+                    placeholder="Enter your email"
+                    style="min-width: 300px"
                   >
-                  </q-select>
-                </template>
-                <template v-slot:append>
-                  <q-icon name="phone" color="black" />
-                </template>
-              </q-input>
-              <q-btn
-                class="q-mt-xl full-width"
-                color="green-12"
-                text-color="indigo-6"
-                unelevated
-                label="Continue"
-                no-caps
-                style="border-radius: 8px; height: 40px"
-                @click="this.$router.push('/otp')"
-              />
-            </q-tab-panel>
-
-            <q-tab-panel name="idcard">
-              <div class="text-h6">Alarms</div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </q-tab-panel>
-          </q-tab-panels>
+                    <template v-slot:append>
+                      <q-icon name="badge" color="black" />
+                    </template>
+                  </q-input>
+                  <div class="text-left q-pt-md">Password</div>
+                  <q-input
+                    rounded
+                    standout
+                    v-model="user.password"
+                    placeholder="Enter your password"
+                    :type="isPwd ? 'password' : 'text'"
+                  >
+                    <template v-slot:append>
+                      <q-icon
+                        :name="isPwd ? 'visibility_off' : 'visibility'"
+                        color="black"
+                        @click="isPwd = !isPwd"
+                      />
+                    </template>
+                  </q-input>
+                  <div
+                    class="text-right text-blue"
+                    onclick="alert('Please contact your administrator to reset your password.')"
+                  >
+                    Forgot password?
+                  </div>
+                  <q-btn
+                    class="q-mt-md full-width"
+                    color="green-12"
+                    text-color="indigo-6"
+                    unelevated
+                    label="Sign in"
+                    no-caps
+                    style="border-radius: 8px; height: 40px"
+                    @click="signInEmail"
+                  />
+                </div>
+              </q-tab-panel>
+            </q-tab-panels>
+          </div>
         </q-card>
       </q-page>
     </q-page-container>
@@ -99,6 +152,7 @@ export default defineComponent({
       tab: ref("phone"),
       phoneNumber: ref(""),
       country: ref("+66"),
+      isPwd: ref(true),
     };
   },
   provide: {
@@ -173,7 +227,7 @@ export default defineComponent({
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          this.$router.push("/");
+          this.$router.push("/home");
           // ...
         })
         .catch((error) => {
