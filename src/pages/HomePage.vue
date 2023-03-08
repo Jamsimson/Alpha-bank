@@ -27,7 +27,7 @@
     </section>
     <br />
     <!-- section account balance -->
-    <section class="section2">
+    <section class="section2" @click="this.$router.push('/account')">
       <q-card class="my-balance bg-warning">
         <div class="row" style="height: 90px">
           <div
