@@ -3,14 +3,13 @@
   <q-layout view="hHh Lpr fFf">
     <!-- center container -->
     <q-page-container>
-      <!-- back button -->
-
       <!-- recaptcha container -->
       <div id="recaptcha-container"></div>
       <q-page class="text-white bg-indigo-6">
+        <!-- back button -->
         <q-icon
           class="text-left text-yellow-8 q-ma-lg"
-          name="arrow_back"
+          name="arrow_back_ios"
           size="2.5em"
           @click="this.$router.push('/start')"
         />
@@ -25,7 +24,7 @@
         </div>
         <!-- card -->
         <q-card
-          style="border-radius: 20px; min-height: 600px"
+          style="border-radius: 20px; min-height: 65%"
           class="q-pa-md fixed-bottom"
         >
           <div class="text-center flex flex-center">
@@ -41,7 +40,7 @@
                 <q-btn outline color="indigo-6" label="Phone number">
                   <q-tab rounded class="q-overlay absolute-full" name="phone" />
                 </q-btn>
-                <q-btn outline color="indigo-6" label="identification Number">
+                <q-btn outline color="indigo-6" label="Identification Number">
                   <q-tab class="q-overlay absolute-full" name="idcard"
                 /></q-btn>
               </q-btn-group>
@@ -54,6 +53,10 @@
                   standout
                   v-model="phoneNumber"
                   placeholder="Enter your phone number"
+                  lazy-rules
+                  :rules="[
+                    (val) => val.length > 0 || 'Please enter your phone number',
+                  ]"
                 >
                   <template v-slot:prepend>
                     <!-- dropdown country flag  -->
@@ -85,13 +88,19 @@
 
               <q-tab-panel name="idcard">
                 <div>
-                  <div class="text-left">identification Number</div>
+                  <div class="text-left">Identification Number</div>
                   <q-input
                     rounded
-                    standout
+                    standout="bg-grey-6 text-black"
                     v-model="user.email"
-                    placeholder="Enter your email"
+                    placeholder="Enter your identification number or email"
                     style="min-width: 300px"
+                    lazy-rules
+                    :rules="[
+                      (val) =>
+                        val.length > 0 ||
+                        'Please enter your identification number or email',
+                    ]"
                   >
                     <template v-slot:append>
                       <q-icon name="badge" color="black" />
@@ -100,10 +109,14 @@
                   <div class="text-left q-pt-md">Password</div>
                   <q-input
                     rounded
-                    standout
+                    standout="bg-grey-6 text-black"
                     v-model="user.password"
                     placeholder="Enter your password"
                     :type="isPwd ? 'password' : 'text'"
+                    lazy-rules
+                    :rules="[
+                      (val) => val.length > 0 || 'Please enter your password',
+                    ]"
                   >
                     <template v-slot:append>
                       <q-icon
@@ -126,6 +139,7 @@
                     unelevated
                     label="Sign in"
                     no-caps
+                    type="submit"
                     style="border-radius: 8px; height: 40px"
                     @click="signInEmail"
                   />
@@ -143,7 +157,11 @@
 import { defineComponent } from "vue";
 import { ref } from "vue";
 import { signInWithEmailAndPassword } from "@firebase/auth";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import {
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 export default defineComponent({
   name: "SignIn",
@@ -167,6 +185,12 @@ export default defineComponent({
     };
   },
   async mounted() {
+    onAuthStateChanged(this.$auth, async (user) => {
+      if (user) {
+        this.$router.push("/");
+      }
+    });
+
     window.RecaptchaVerifier = new RecaptchaVerifier(
       "recaptcha-container",
       {
@@ -218,6 +242,10 @@ export default defineComponent({
         });
     },
     signInEmail() {
+      if (this.user.email == "" || this.user.password == "") {
+        alert("Please enter your email and password.");
+        return;
+      }
       signInWithEmailAndPassword(
         this.$auth,
         this.user.email,
@@ -228,7 +256,6 @@ export default defineComponent({
           const user = userCredential.user;
           console.log(user);
           this.$router.push("/home");
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;

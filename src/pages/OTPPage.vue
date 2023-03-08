@@ -3,40 +3,50 @@
   <q-layout view="hHh Lpr fFf">
     <!-- center container -->
     <q-page-container>
-      <q-page class="text-white bg-indigo-6 flex flex-center">
+      <q-page class="text-white bg-indigo-6"
+        ><q-icon
+          class="text-left text-yellow-8 q-ma-lg bg-indigo-6"
+          name="arrow_back_ios"
+          size="2.5em"
+          @click="this.$router.push('/signin')"
+        />
         <!-- recaptcha container -->
         <!-- card -->
         <q-card
-          style="border-radius: 20px; max-width: 400px; overflow: auto"
-          class="q-pa-md flex flex-center text-black"
+          style="border-radius: 20px; min-height: 65%"
+          class="q-pa-md fixed-bottom text-black text-center"
         >
           <div>
             <div class="text-h6 q-pa-md text-center">OTP Verification</div>
             <p>
-              Please enter the OTP code sent to your phone number
+              Please enter the OTP code
               <!-- <span class="text-yellow-8">{{ storedPhone }}</span> -->
             </p>
           </div>
 
-          <v-otp-input
-            ref="otpInput"
-            input-classes="otp-input"
-            separator=" "
-            :num-inputs="4"
-            :should-auto-focus="true"
-            :is-input-num="true"
-            :conditionalClass="['one', 'two', 'three', 'four']"
-            :placeholder="['*', '*', '*', '*']"
-            @on-change="handleOnChange"
-            @on-complete="handleOnComplete"
-          />
-          <div class="q-pa-md">
+          <div class="flex flex-center">
+            <v-otp-input
+              ref="otpInput"
+              input-classes="otp-input"
+              separator=" "
+              :num-inputs="4"
+              :should-auto-focus="true"
+              :is-input-num="true"
+              :conditionalClass="['one', 'two', 'three', 'four']"
+              :placeholder="['*', '*', '*', '*']"
+              @on-change="handleOnChange"
+              @on-complete="handleOnComplete"
+            />
+          </div>
+          <div class="q-pa-md text-right">
             Did't recieve?
             <!-- resend text -->
             <span
               class="text-indigo-6"
               style="cursor: pointer"
-              @click="clearInput"
+              @click="
+                alert('OTP is not available yet please use email verification')
+              "
               >Resend</span
             >
           </div>

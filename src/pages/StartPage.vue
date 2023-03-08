@@ -43,8 +43,16 @@
 
 <script>
 import { defineComponent } from "vue";
+import { onAuthStateChanged } from "@firebase/auth";
 
 export default defineComponent({
   name: "IndexPage",
+  async mounted() {
+    onAuthStateChanged(this.$auth, async (user) => {
+      if (user) {
+        this.$router.push("/");
+      }
+    });
+  },
 });
 </script>
