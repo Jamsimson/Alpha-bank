@@ -125,7 +125,6 @@
           color="green-12"
           text-color="indigo-6"
           unelevated
-          disable
           to="/"
           label="Preview"
           no-caps
