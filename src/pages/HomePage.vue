@@ -87,7 +87,7 @@
           <div class="col-4">
             <div class="col flex flex-center">
               <q-btn
-                to="`/my-qrcode/${id}`"
+                to="/my-qrcode"
                 round
                 size="md"
                 text-color="dark"
@@ -144,6 +144,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import { alpha_database } from "../stores/database";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "@firebase/auth";
 
@@ -174,7 +175,8 @@ export default defineComponent({
             console.log(`${doc.id} => ${doc.data()}`);
             this.account.push(doc.data());
             this.balance += doc.data().balance;
-            console.log(`${this.account.length}`);
+            this.database.setUsername(this.name);
+            this.database.setAccount(this.account);
           });
         });
       } else {
@@ -184,6 +186,7 @@ export default defineComponent({
   },
   data() {
     return {
+      database: alpha_database(),
       name: "",
       account: [],
       balance: 0,

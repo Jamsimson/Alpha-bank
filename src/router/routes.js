@@ -13,9 +13,9 @@ const routes = [
     path: "/",
     component: () => import("layouts/TransferLayout.vue"),
     children: [
-      { path: "test/:id", component: () => import("pages/TestPage.vue") },
-      { path: "transfer", component: () => import("pages/TransferPage.vue") },
-      { path: "my-qrcode", component: () => import("pages/QrPage.vue") },
+      { path: 'test', component: () => import('pages/TestPage.vue') },
+      { path: 'transfer', component: () => import('pages/TransferPage.vue') },
+      { path: 'my-qrcode', component: () => import('pages/QrPage.vue') },
     ],
   },
   {

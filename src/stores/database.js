@@ -2,6 +2,8 @@ import { defineStore } from "pinia";
 export const alpha_database = defineStore({
     id: "counter",
     state: () => ({
+        username: null,
+        accounts: [],
         counter: 1,
         user: [
             {
@@ -53,6 +55,18 @@ export const alpha_database = defineStore({
             }
             return `not found`
         },
+        setUsername(username) {
+            this.username = username;
+            console.log(`set username ${username}`);
+
+        },
+        setAccount(accounts) {
+            this.accounts = accounts
+            for (var i = 0; i < this.accounts.length; i++) {
+                console.log(`set accounts ${accounts[i].id} ${accounts[i].balance}`);
+            }
+
+        }
     },
 });
 
