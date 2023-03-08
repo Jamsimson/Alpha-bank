@@ -49,7 +49,7 @@
             text-color="dark"
             color="warning"
             icon="qr_code_2"
-            to="#"
+            to="/my-qrcode"
           />
         </div>
         <div class="col flex flex-center text-caption">My Qrcode</div>

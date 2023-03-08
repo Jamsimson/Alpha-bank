@@ -60,7 +60,7 @@
             <div class="col flex flex-center">
               <q-btn
                 round
-                to="/test"
+                to="/account"
                 size="md"
                 text-color="dark"
                 color="green-12"
@@ -108,7 +108,7 @@
                 icon="add"
               />
             </div>
-            <div class="col flex flex-center">command</div>
+            <div class="col flex flex-center">add</div>
           </div>
           <!-- button 5 -->
           <div class="col-4">
@@ -121,7 +121,7 @@
                 icon="add"
               />
             </div>
-            <div class="col flex flex-center">command</div>
+            <div class="col flex flex-center">add</div>
           </div>
           <!-- button 6 -->
           <div class="col-4">
@@ -134,7 +134,7 @@
                 icon="add"
               />
             </div>
-            <div class="col flex flex-center">command</div>
+            <div class="col flex flex-center">add</div>
           </div>
         </div>
       </q-card>
