@@ -1,14 +1,16 @@
 <template>
   <q-page class="q-pa-md">
     <!--Title: My Qrcode -->
-    <div class="text-h4 text-weight-bold">My Qr code</div>
+    <div class="text-h3 text-weight-bold" style="margin-top: 100px">
+      My Qr code
+    </div>
     <br />
     <!-- Qrcode -->
-    <div class="flex flex-center">
-      <qrcode-vue :value="qrcode" :size="size" level="H" />
+    <div class="absolute-center">
+      <qrcode-vue :value="qrcodes" :size="size" level="H" />
     </div>
     <!-- radio for selecte date -->
-    {{ accounts }}
+    <div class=""></div>
   </q-page>
 </template>
 
@@ -21,7 +23,9 @@ import { alpha_database } from "../stores/database";
 export default defineComponent({
   name: "QrPage",
   setup() {
-    return {};
+    return {
+      model: ref(null),
+    };
   },
   data() {
     return {
@@ -29,9 +33,9 @@ export default defineComponent({
       x: "",
       value: "",
       message: null,
-      size: 220,
+      size: 300,
       accounts: [],
-      qrcode: "",
+      qrcodes: "",
       test: [],
     };
   },
@@ -39,8 +43,8 @@ export default defineComponent({
     QrcodeVue,
   },
   mounted() {
-    this.qrcode = `${this.database.accounts[1].account_number},`;
-    // console.log(this.qrcode);
+    this.qrcodes = `{account_name: ${this.database.accounts[0].account_name},account_number: ${this.database.accounts[0].account_number}}`;
+    console.log(this.qrcode);
     this.test = this.database.accounts;
     for (var i = 0; i < this.test.length; i++) {
       var upNew = {
