@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf" class="layout-background">
     <!-- heading bar -->
-    <q-header elevated class="bg-white text-black">
+    <q-header class="bg-white text-black">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
@@ -9,6 +9,15 @@
           </q-avatar>
           Alpha Bank
         </q-toolbar-title>
+        <!-- notification -->
+        <q-btn
+          flat
+          round
+          dense
+          icon="notifications"
+          class="q-ml-md"
+          color="black"
+        />
       </q-toolbar>
     </q-header>
     <q-page-container>
