@@ -9,7 +9,7 @@
         <q-item-section avatar>
           <img src="img/user icon.png" alt="" class="usericon" />
         </q-item-section>
-        <q-item-section>John</q-item-section>
+        <q-item-section>{{ this.database.username }}</q-item-section>
       </q-item>
       <q-separator spaced inset />
       <!-- Manage email -->
@@ -85,9 +85,14 @@
 
 <script>
 import { defineComponent } from "vue";
-
+import { alpha_database } from "../stores/database";
 export default defineComponent({
   name: "SettingPage",
+  data() {
+    return {
+      database: alpha_database(),
+    };
+  },
   methods: {
     // handle click
     async logOut() {
