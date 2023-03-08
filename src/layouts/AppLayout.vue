@@ -43,7 +43,7 @@
           label="Transfer"
         />
         <q-route-tab
-          to="#"
+          to="/scan-qrcode"
           class=""
           name="scan"
           icon="qr_code_scanner"
