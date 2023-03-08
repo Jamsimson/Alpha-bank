@@ -64,6 +64,65 @@
         </q-btn-dropdown>
       </div>
     </section>
+    <!-- section 3 -->
+    <section>
+      <div class="q-pa-md">
+        <!-- History titile -->
+        <div class="text-h6 text-weight-bold">History</div>
+        <!-- history today -->
+        <div class="text-body1">Today</div>
+        <!-- list Today -->
+        <q-separator spaced />
+        <q-list v-for="today in todays" :key="today.time">
+          <q-item>
+            <q-item-section top avatar class="flex flex-center">{{
+              today.time
+            }}</q-item-section>
+            <q-item-section top avatar>
+              <q-avatar
+                :color="today.color"
+                text-color="white"
+                :icon="today.icon"
+              />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Receipt of funds</q-item-label>
+              <q-item-label caption lines="2"> 545646788678686 </q-item-label>
+            </q-item-section>
+            <q-item-section side top text class="flex flex-center">
+              {{ today.total }}
+            </q-item-section>
+          </q-item>
+          <q-separator spaced />
+        </q-list>
+        <!-- history Yesterday -->
+        <div class="text-body1">Yesterday</div>
+        <!-- list Yesterday -->
+        <q-separator spaced />
+        <q-list v-for="yesterday in yesterdays" :key="yesterday.time">
+          <q-item>
+            <q-item-section top avatar class="flex flex-center">{{
+              yesterday.time
+            }}</q-item-section>
+            <q-item-section top avatar>
+              <q-avatar
+                :color="yesterday.color"
+                text-color="white"
+                :icon="yesterday.icon"
+              />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Receipt of funds</q-item-label>
+              <q-item-label caption lines="2"> 545646788678686 </q-item-label>
+            </q-item-section>
+            <q-item-section side top class="flex flex-center">
+              {{ yesterday.total }}
+            </q-item-section>
+          </q-item>
+          <q-separator spaced />
+        </q-list>
+      </div>
+    </section>
   </q-page>
 </template>
 
@@ -106,6 +165,48 @@ export default defineComponent({
       accoutLength: 0,
       selected: ref(""),
       amount: ref(),
+      todays: [
+        {
+          time: "16:34",
+          color: "green-12",
+          icon: "arrow_circle_left",
+          total: "+ 400$",
+          total_color: "red",
+        },
+        {
+          time: "16:34",
+          color: "red",
+          icon: "arrow_circle_right",
+          total: "+ 400$",
+        },
+        {
+          time: "16:34",
+          color: "green-12",
+          icon: "arrow_circle_left",
+          total: "+ 400$",
+        },
+      ],
+      yesterdays: [
+        {
+          time: "12:21",
+          color: "green-12",
+          icon: "arrow_circle_left",
+          total: "+ 425$",
+          total_color: "red",
+        },
+        {
+          time: "7:47",
+          color: "green-12",
+          icon: "arrow_circle_left",
+          total: "+ 844$",
+        },
+        {
+          time: "7:47",
+          color: "green-12",
+          icon: "arrow_circle_left",
+          total: "+ 400$",
+        },
+      ],
     };
   },
   created() {
