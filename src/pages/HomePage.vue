@@ -29,7 +29,11 @@
     <!-- section account balance -->
     <section class="section2">
       <q-card class="my-balance bg-warning">
-        <div class="row" style="height: 90px">
+        <div
+          class="row"
+          style="height: 90px"
+          @click="this.$router.push('/account')"
+        >
           <div
             class="col-6 flex flex-center text-h6 text-weight-bold"
             style="color: #445cb4"
