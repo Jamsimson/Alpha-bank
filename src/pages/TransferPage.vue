@@ -36,15 +36,24 @@
         height="180px"
       >
         <!-- loop card for shows accout -->
-        <q-carousel-slide v-for="(item, index) in 2" :key="index" :name="index">
+        <q-carousel-slide
+          v-for="index in accounts.length"
+          :key="index"
+          :name="index"
+        >
           <div class="">
             <q-card
               style="border-radius: 20px"
               class="bg-indigo-6 text-yellow-7"
             >
               <q-card-section>
-                <div style="font-size: 15px">*** 1234</div>
-                <div class="q-pt-md" style="font-size: 30px">$ 20000</div>
+                <!-- use format number like this: **** 1234 -->
+                <div style="font-size: 15px">
+                  **** {{ accounts[index - 1].account_number }}
+                </div>
+                <div class="q-pt-md" style="font-size: 30px">
+                  $ {{ accounts[index - 1].balance.toLocaleString() }}
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -52,6 +61,78 @@
       </q-carousel>
     </section>
     <!-- section 3 -->
+    <section class="q-pa-md">
+      <div>
+        TO
+        <q-select
+          v-model="selected"
+          :options="options"
+          label="Choose a bank for transfer"
+          outlined
+          rounded
+          class="q-mt-sm"
+          style="width: 100%"
+        />
+        Account number
+        <q-input
+          standout
+          rounded
+          class="q-mt-sm"
+          style="width: 100%"
+          label="Enter account number to transfer"
+        />
+        Amount
+        <q-input
+          v-model="amount"
+          standout
+          rounded
+          class="q-mt-sm"
+          style="width: 100%"
+          label="Enter amount to transfer"
+          hint="Remaining limit today: 10,000,000.00"
+        />
+        <div class="float-right">
+          <q-avatar
+            size="40px"
+            font-size="small"
+            class="bg-yellow-8 q-ml-sm"
+            @click="amount = 100"
+          >
+            <div>100</div>
+          </q-avatar>
+          <q-avatar
+            size="40px"
+            font-size="small"
+            class="bg-yellow-8 q-ml-sm"
+            @click="amount = 500"
+          >
+            <div>500</div>
+          </q-avatar>
+          <q-avatar size="40px" font-size="small" class="bg-yellow-8 q-ml-sm">
+            <div>+</div>
+          </q-avatar>
+        </div>
+        <div class="q-pt-lg">Note</div>
+        <q-input
+          standout
+          rounded
+          class="q-mt-sm"
+          style="width: 100%"
+          label="Enter personal note to transfer"
+        />
+        <q-btn
+          class="q-mt-lg full-width"
+          color="green-12"
+          text-color="indigo-6"
+          unelevated
+          disable
+          to="/"
+          label="Preview"
+          no-caps
+          style="border-radius: 8px; height: 40px"
+        />
+      </div>
+    </section>
   </q-page>
 </template>
 
@@ -86,17 +167,25 @@ const friendList = [
 export default defineComponent({
   name: "TransferPage",
   setup() {
-    console.log(alpha_database());
     return {
       friendList,
       database: alpha_database(),
       slide: ref(1),
       accounts: [],
+      accoutLength: 0,
+      options: [
+        { image: "https://cdn.quasar.dev/img/avatar.png", label: "SCB" },
+        { image: "https://cdn.quasar.dev/img/avatar.png", label: "KTB" },
+        { image: "https://cdn.quasar.dev/img/avatar.png", label: "GSB" },
+        { image: "https://cdn.quasar.dev/img/avatar.png", label: "UOB" },
+      ],
+      selected: ref(""),
+      amount: ref(),
     };
   },
-  mounted() {
-    this.accounts = this.database.g;
-    console.log(this.accounts);
+  created() {
+    this.accounts = this.database.accounts;
+    this.accoutLength = this.accounts.length;
   },
 });
 </script>
