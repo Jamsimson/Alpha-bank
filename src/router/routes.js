@@ -13,16 +13,23 @@ const routes = [
     path: "/",
     component: () => import("layouts/TransferLayout.vue"),
     children: [
-      { path: 'test', component: () => import('pages/TestPage.vue') },
-      { path: 'transfer', component: () => import('pages/TransferPage.vue') },
-      { path: 'my-qrcode', component: () => import('pages/QrPage.vue') },
+      { path: "test", component: () => import("pages/TestPage.vue") },
+      { path: "transfer", component: () => import("pages/TransferPage.vue") },
+      { path: "my-qrcode", component: () => import("pages/QrPage.vue") },
     ],
   },
   {
     path: "/",
     component: () => import("layouts/ScanLayout.vue"),
     children: [
-      { path: 'scan-qrcode', component: () => import('pages/ScanPage.vue') },
+      { path: "scan-qrcode", component: () => import("pages/ScanPage.vue") },
+    ],
+  },
+  {
+    path: "/",
+    component: () => import("layouts/BalanceLayout.vue"),
+    children: [
+      { path: "account", component: () => import("pages/AccountPage.vue") },
     ],
   },
   {
@@ -36,6 +43,12 @@ const routes = [
       { path: "start", component: () => import("pages/StartPage.vue") },
       { path: "signin", component: () => import("pages/SignInPage.vue") },
       { path: "otp", component: () => import("pages/OTPPage.vue") },
+    ],
+  },
+  {
+    path: "",
+    children: [
+      { path: "preview", component: () => import("pages/PreviewPage.vue") },
     ],
   },
 

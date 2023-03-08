@@ -2,7 +2,7 @@
   <q-page class="q-pa-md">
     <!--Title: My Qrcode -->
     <div
-      class="text-h3 text-weight-bold"
+      class="text-h4 text-weight-bold"
       style="margin-top: 50px; margin-bottom: 50px"
     >
       My Qr code
@@ -24,12 +24,17 @@
             text-color="white"
             color="green-12"
             label="Share"
-            style="width: 120px"
+            style="width: 120px; border-radius: 10px"
           />
         </div>
         <br />
         <div class="col" style="width: 150px">
-          <q-btn outline color="green-12" label="Save" style="width: 120px" />
+          <q-btn
+            outline
+            color="green-12"
+            label="Save"
+            style="width: 120px; border-radius: 10px"
+          />
         </div>
       </div>
     </section>
@@ -41,7 +46,7 @@
           text-color="primary"
           color="green-12"
           label="Change Account"
-          style="width: 300px"
+          style="width: 300px; border-radius: 10px"
         />
         <div class="text-right text-blue" @click="this.$router.go(-1)">
           <q-icon name="arrow_back_ios" />

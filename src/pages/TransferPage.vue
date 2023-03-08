@@ -121,11 +121,12 @@
           label="Enter personal note to transfer"
         />
         <q-btn
+          v-model="preview"
           class="q-mt-lg full-width"
           color="green-12"
           text-color="indigo-6"
           unelevated
-          to="/"
+          to="/preview"
           label="Preview"
           no-caps
           style="border-radius: 8px; height: 40px"
@@ -180,6 +181,7 @@ export default defineComponent({
       ],
       selected: ref(""),
       amount: ref(),
+      preview: ref(false),
     };
   },
   created() {

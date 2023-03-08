@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="bg-white text-dark">
+    <q-header class="bg-white text-dark">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      this.$router.push("/");
     },
   },
 };
