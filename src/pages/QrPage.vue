@@ -1,16 +1,54 @@
 <template>
   <q-page class="q-pa-md">
     <!--Title: My Qrcode -->
-    <div class="text-h3 text-weight-bold" style="margin-top: 100px">
+    <div
+      class="text-h3 text-weight-bold"
+      style="margin-top: 50px; margin-bottom: 50px"
+    >
       My Qr code
     </div>
     <br />
     <!-- Qrcode -->
-    <div class="absolute-center">
-      <qrcode-vue :value="qrcodes" :size="size" level="H" />
-    </div>
-    <!-- radio for selecte date -->
-    <div class=""></div>
+    <section>
+      <div class="flex flex-center">
+        <qrcode-vue :value="qrcodes" :size="size" level="H" />
+      </div>
+    </section>
+    <br />
+    <!-- share and save section -->
+    <section>
+      <div class="row q-pa-md">
+        <div class="col text-right" style="margin-right: 12%">
+          <q-btn
+            unelevated
+            text-color="white"
+            color="green-12"
+            label="Share"
+            style="width: 120px"
+          />
+        </div>
+        <br />
+        <div class="col" style="width: 150px">
+          <q-btn outline color="green-12" label="Save" style="width: 120px" />
+        </div>
+      </div>
+    </section>
+    <!-- change Accout& back to main mean section -->
+    <section>
+      <div class="flex flex-center" style="margin-top: 70px">
+        <q-btn
+          unelevated
+          text-color="primary"
+          color="green-12"
+          label="Change Account"
+          style="width: 300px"
+        />
+        <div class="text-right text-blue" @click="this.$router.go(-1)">
+          <q-icon name="arrow_back_ios" />
+          section Back to main menu
+        </div>
+      </div>
+    </section>
   </q-page>
 </template>
 
