@@ -9,7 +9,7 @@
         <q-item-section avatar>
           <img src="img/user icon.png" alt="" class="usericon" />
         </q-item-section>
-        <q-item-section>{{ this.database.username }}</q-item-section>
+        <q-item-section>{{ database.username }}</q-item-section>
       </q-item>
       <q-separator spaced inset />
       <!-- Manage email -->
