@@ -197,6 +197,8 @@ export default defineComponent({
     const bank = this.$route.params.bank;
     const account_name = this.$route.params.account_name;
     const account_number = this.$route.params.account_number;
+    this.selected = bank;
+    this.accountNumber = account_number;
     console.log(
       `Bank:${bank} account name:${account_name} account_number:${account_number}`
     );
