@@ -1,5 +1,24 @@
 <template>
   <q-page class="q-pa-md">
+    <q-dialog v-model="confirmLogOut" persistent>
+      <q-card>
+        <q-card-section class="row items-center">
+          <q-avatar icon="logout" color="primary" text-color="white" />
+          <span class="q-ml-sm">Are you sure you want to log out? </span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancel" color="primary" v-close-popup />
+          <q-btn
+            flat
+            label="Log out"
+            color="negative"
+            v-close-popup
+            @click="logOut"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     <!-- title -->
     <div class="text-h4 text-weight-bold">Setting</div>
     <!-- item -->
@@ -71,7 +90,7 @@
         </q-itme-section>
       </q-item>
       <q-separator spaced inset />
-      <q-item clickable v-ripple @click="logOut">
+      <q-item clickable v-ripple @click="confirmLogOut = true">
         <q-item-section avatar>
           <q-icon color="dark" name="logout" />
         </q-item-section>
@@ -99,6 +118,7 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import { defineComponent } from "vue";
 import { alpha_database } from "../stores/database";
 export default defineComponent({
@@ -106,6 +126,7 @@ export default defineComponent({
   data() {
     return {
       database: alpha_database(),
+      confirmLogOut: ref(false),
     };
   },
   methods: {
