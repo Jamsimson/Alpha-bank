@@ -129,10 +129,10 @@
           color="green-12"
           text-color="indigo-6"
           unelevated
-          to="/preview"
           label="Preview"
           no-caps
           style="border-radius: 8px; height: 40px"
+          @click="addClick"
         />
       </div>
     </section>
@@ -175,6 +175,7 @@ export default defineComponent({
       database: alpha_database(),
       slide: ref(1),
       accounts: [],
+      account_name: null,
       accoutLength: 0,
       options: [
         { image: "https://cdn.quasar.dev/img/avatar.png", label: "SCB" },
@@ -193,15 +194,28 @@ export default defineComponent({
     this.accounts = this.database.accounts;
     this.accoutLength = this.accounts.length;
   },
+
   mounted() {
     const bank = this.$route.params.bank;
     const account_name = this.$route.params.account_name;
     const account_number = this.$route.params.account_number;
     this.selected = bank;
+    this.account_name = account_name;
     this.accountNumber = account_number;
     console.log(
       `Bank:${bank} account name:${account_name} account_number:${account_number}`
     );
+  },
+  methods: {
+    addClick() {
+      console.log(
+        `preview/${this.selected}/${this.account_name}/${this.accountNumber}/${this.amount}`
+      );
+
+      this.$router.push(
+        `/preview/${this.selected}/${this.account_name}/${this.accountNumber}/${this.amount}`
+      );
+    },
   },
 });
 </script>

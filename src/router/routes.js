@@ -49,7 +49,7 @@ const routes = [
   {
     path: "",
     children: [
-      { path: "preview", component: () => import("pages/PreviewPage.vue") },
+      { path: "preview/:bank/:account_name/:account_number/:amount", component: () => import("pages/PreviewPage.vue") },
     ],
   },
 
