@@ -6,7 +6,7 @@
           <q-avatar>
             <q-icon @click="this.$router.go(-1)" name="prarrow_back_iosint" />
           </q-avatar>
-          <q-title class="text-weight-bold">Review</q-title>
+          <q-title class="text-weight-bold">Preview</q-title>
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -40,10 +40,10 @@
                 >
               </p>
             </div>
-            <div style="font-size: 20px" class="float-right q-px-lg col">
+            <div style="font-size: 15px" class="float-right q-px-lg col">
               {{ database.username }}
             </div>
-            <div style="font-size: 20px" class="float-right q-px-lg col">
+            <div style="font-size: 15px" class="float-right q-px-lg col">
               <div class="text-white text-right">
                 {{
                   database.accounts[0].account_number.toString().slice(0, 3) +
@@ -53,10 +53,10 @@
                   database.accounts[0].account_number.toString().slice(8)
                 }}
               </div>
-              <div style="height: 80px" class="float-right"></div>
+              <div style="height: 130px" class="float-right"></div>
             </div>
 
-            <div style="font-size: 20px" class="float-right q-px-lg col">
+            <div style="font-size: 15px" class="float-right q-px-lg col">
               <span>Arthur Morgan</span>
               <p class="text-black text-right">888-888888-8</p>
             </div>
@@ -130,6 +130,9 @@ export default defineComponent({
       selected: ref(""),
       amount: ref(),
       name: ref(),
+      reciever: ref(),
+      recieverAccount: ref(),
+      recieverBank: ref(),
     };
   },
   created() {
