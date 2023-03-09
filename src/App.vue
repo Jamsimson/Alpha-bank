@@ -10,7 +10,7 @@ import { onAuthStateChanged } from "@firebase/auth";
 
 export default defineComponent({
   name: "App",
-  async created() {
+  async beforeCreate() {
     onAuthStateChanged(this.$auth, async (user) => {
       if (user) {
         console.log("this is app page");

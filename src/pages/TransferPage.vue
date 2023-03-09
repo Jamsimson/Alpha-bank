@@ -79,6 +79,7 @@
           v-model="accountNumber"
           standout
           rounded
+          type="number"
           class="q-mt-sm"
           style="width: 100%"
           label="Enter account number to transfer"
@@ -88,6 +89,7 @@
           v-model="amount"
           standout
           rounded
+          type="number"
           class="q-mt-sm"
           style="width: 100%"
           label="Enter amount to transfer"
