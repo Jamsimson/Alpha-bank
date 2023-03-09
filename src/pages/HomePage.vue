@@ -159,6 +159,7 @@ export default defineComponent({
       if (user) {
         // uid = user.uid;
         // console.log(uid);
+        this.database.setSignedInUser(user);
         const signedInUserEmail = user.email;
         // console.log(this.signedInUser.email);
         var q = query(

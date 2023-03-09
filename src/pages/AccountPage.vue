@@ -11,7 +11,7 @@
         control-color="grey-8"
         navigation
         padding
-        height="180px"
+        height="250px"
       >
         <!-- loop card for shows accout -->
         <q-carousel-slide
@@ -21,16 +21,37 @@
         >
           <div class="">
             <q-card
-              style="border-radius: 20px"
-              class="bg-indigo-6 text-yellow-7"
+              style="
+                border-radius: 20px;
+                background: linear-gradient(
+                  270deg,
+                  #445cb4 50.31%,
+                  rgba(68, 92, 180, 0.76) 101.18%
+                );
+              "
+              class="text-yellow-7"
             >
               <q-card-section>
                 <!-- use format number like this: **** 1234 -->
+                <span>{{ accounts[index - 1].account_name }}</span>
+                <span class="float-right"
+                  ><img src="../assets/logo.png" style="width: 30px"
+                /></span>
                 <div style="font-size: 15px">
-                  **** {{ accounts[index - 1].account_number }}
+                  ****
+                  {{ accounts[index - 1].account_number.toString().slice(6) }}
                 </div>
-                <div class="q-pt-md" style="font-size: 30px">
-                  $ {{ accounts[index - 1].balance.toLocaleString() }}
+                <div class="q-pt-xl" style="font-size: 35px">
+                  $
+                  {{
+                    isShow
+                      ? accounts[index - 1].balance.toLocaleString()
+                      : "******"
+                  }}
+                  <q-icon
+                    :name="isShow ? 'visibility_off' : 'visibility'"
+                    @click="isShow = !isShow"
+                  />
                 </div>
               </q-card-section>
             </q-card>
@@ -165,6 +186,7 @@ export default defineComponent({
       accoutLength: 0,
       selected: ref(""),
       amount: ref(),
+      isShow: ref(true),
       todays: [
         {
           time: "16:34",

@@ -49,7 +49,8 @@
               <q-card-section>
                 <!-- use format number like this: **** 1234 -->
                 <div style="font-size: 15px">
-                  **** {{ accounts[index - 1].account_number }}
+                  ****
+                  {{ accounts[index - 1].account_number.toString().slice(6) }}
                 </div>
                 <div class="q-pt-md" style="font-size: 30px">
                   $ {{ accounts[index - 1].balance.toLocaleString() }}
