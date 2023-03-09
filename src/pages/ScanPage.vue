@@ -23,6 +23,7 @@ export default {
       isValid: undefined,
       camera: "auto",
       result: null,
+      json: [],
       showCamera: true,
     };
   },
@@ -35,7 +36,11 @@ export default {
   //   },
   methods: {
     async onDecode(content) {
+      var splitData;
       this.result = content;
+      console.log(typeof this.result);
+      splitData = JSON.parse(this.result);
+      console.log(splitData);
 
       this.turnCameraOff();
     },
