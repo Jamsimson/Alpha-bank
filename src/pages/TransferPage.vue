@@ -203,6 +203,24 @@ export default defineComponent({
   },
   methods: {
     addClick() {
+      if (this.amount > 10000) {
+        alert("Amount must be less than 20,000");
+        return;
+      }
+      if (this.selected == undefined) {
+        alert("Please select bank");
+        return;
+      }
+      console.log(this.accountNumber.length);
+      if (this.accountNumber == undefined || this.accountNumber.length != 10) {
+        alert("Please enter account number and must be 10 digits");
+        return;
+      }
+      if (this.amount == undefined) {
+        alert("Please enter amount");
+        return;
+      }
+
       console.log(
         `preview/${this.selected}/${this.account_name}/${this.accountNumber}/${this.amount}`
       );
