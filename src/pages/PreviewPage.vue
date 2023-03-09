@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
-            <q-btn class="q-pr-sm" to="/transfer" icon="prarrow_back_iosint" />
+            <q-icon @click="this.$router.go(-1)" name="prarrow_back_iosint" />
           </q-avatar>
           <q-title class="text-weight-bold">Review</q-title>
         </q-toolbar-title>

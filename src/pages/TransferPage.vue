@@ -75,6 +75,7 @@
         />
         Account number
         <q-input
+          v-model="accountNumber"
           standout
           rounded
           class="q-mt-sm"
@@ -114,6 +115,7 @@
         </div>
         <div class="q-pt-lg">Note</div>
         <q-input
+          v-model="note"
           standout
           rounded
           class="q-mt-sm"
@@ -181,6 +183,8 @@ export default defineComponent({
       ],
       selected: ref(""),
       amount: ref(),
+      accountNumber: ref(),
+      note: ref(""),
       preview: ref(false),
     };
   },
