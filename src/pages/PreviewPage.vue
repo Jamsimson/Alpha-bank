@@ -35,9 +35,9 @@
               <span class="text-black">TO</span>
               <p class="flex flex-center">
                 <q-avatar color="purple"> </q-avatar>
-                <span class="text-black q-pl-md" style="font-size: 30px"
-                  >SCB</span
-                >
+                <span class="text-black q-pl-md" style="font-size: 30px">{{
+                  recieverBank
+                }}</span>
               </p>
             </div>
             <div style="font-size: 15px" class="float-right q-px-lg col">
@@ -55,10 +55,19 @@
               </div>
               <div style="height: 130px" class="float-right"></div>
             </div>
-
             <div style="font-size: 15px" class="float-right q-px-lg col">
-              <span>Arthur Morgan</span>
-              <p class="text-black text-right">888-888888-8</p>
+              {{ reciever == "undefined" ? "John" : reciever }}
+            </div>
+            <div style="font-size: 15px" class="float-right q-px-lg col">
+              <p class="text-black text-right">
+                {{
+                  recieverAccount.slice(0, 3) +
+                  "-" +
+                  recieverAccount.slice(3, 9) +
+                  "-" +
+                  recieverAccount.slice(8)
+                }}
+              </p>
             </div>
           </div>
           <div class="q-pa-lg fixed-bottom">
@@ -128,11 +137,11 @@ export default defineComponent({
       accounts: [],
       accoutLength: 0,
       selected: ref(""),
-      amount: ref(),
+      amount: ref(0),
       name: ref(),
-      reciever: ref(),
-      recieverAccount: ref(),
-      recieverBank: ref(),
+      reciever: ref(""),
+      recieverAccount: ref(""),
+      recieverBank: ref(""),
     };
   },
   mounted() {

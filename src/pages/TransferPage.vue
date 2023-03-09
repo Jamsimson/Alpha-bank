@@ -177,12 +177,7 @@ export default defineComponent({
       accounts: [],
       account_name: null,
       accoutLength: 0,
-      options: [
-        { image: "https://cdn.quasar.dev/img/avatar.png", label: "SCB" },
-        { image: "https://cdn.quasar.dev/img/avatar.png", label: "KTB" },
-        { image: "https://cdn.quasar.dev/img/avatar.png", label: "GSB" },
-        { image: "https://cdn.quasar.dev/img/avatar.png", label: "UOB" },
-      ],
+      options: ["SCB", "KTB", "GSB", "UOB"],
       selected: ref(""),
       amount: ref(),
       accountNumber: ref(),
