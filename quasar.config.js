@@ -147,9 +147,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `Quasar App`,
-        short_name: `Quasar App`,
-        description: `A Quasar Project`,
+        name: `Alpha bank`,
+        short_name: `Alpha bank`,
+        description: `Alpha banking web app`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
