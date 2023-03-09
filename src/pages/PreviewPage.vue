@@ -41,8 +41,18 @@
               </p>
             </div>
             <div style="font-size: 20px" class="float-right q-px-lg col">
-              <span>John Marston</span>
-              <p class="text-white text-right">213-4543-4</p>
+              {{ database.username }}
+            </div>
+            <div style="font-size: 20px" class="float-right q-px-lg col">
+              <div class="text-white text-right">
+                {{
+                  database.accounts[0].account_number.toString().slice(0, 3) +
+                  "-" +
+                  database.accounts[0].account_number.toString().slice(3, 9) +
+                  "-" +
+                  database.accounts[0].account_number.toString().slice(8)
+                }}
+              </div>
               <div style="height: 80px" class="float-right"></div>
             </div>
 
@@ -68,7 +78,7 @@
       <q-separator class="q-mt-md q-mb-md" color="black" />
       <div style="font-size: 20px">
         <span class="text-left">AMOUNT</span>
-        <span class="float-right">10,000</span>
+        <span class="float-right">10,000.0</span>
       </div>
       <q-separator class="q-mt-md q-mb-md" color="gray" />
       <div style="font-size: 20px">
