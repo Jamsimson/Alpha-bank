@@ -78,7 +78,7 @@
       <q-separator class="q-mt-md q-mb-md" color="black" />
       <div style="font-size: 20px">
         <span class="text-left">AMOUNT</span>
-        <span class="float-right">10,000.0</span>
+        <span class="float-right">{{ amount }}</span>
       </div>
       <q-separator class="q-mt-md q-mb-md" color="gray" />
       <div style="font-size: 20px">
@@ -139,10 +139,12 @@ export default defineComponent({
     const bank = this.$route.params.bank;
     const account_name = this.$route.params.account_name;
     const account_number = this.$route.params.account_number;
+    const amount = this.$route.params.amount;
 
-    this.selected = bank;
-    this.account_name = account_name;
-    this.accountNumber = account_number;
+    this.recieverBank = bank;
+    this.reciever = account_name;
+    this.recieverAccount = account_number;
+    this.amount = amount;
     console.log(
       `Bank:${bank} account name:${account_name} account_number:${account_number}`
     );
