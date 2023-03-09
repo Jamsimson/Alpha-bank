@@ -85,21 +85,5 @@ export default defineComponent({
   components: {
     QrcodeVue,
   },
-  mounted() {
-    this.qrcodes = `{
-    "account_name":"${this.database.accounts[0].account_name}",
-    "account_number":"${this.database.accounts[0].account_number}"
-    }`;
-    console.log(this.qrcode);
-    this.test = this.database.accounts;
-    for (var i = 0; i < this.test.length; i++) {
-      var upNew = {
-        account_name: `${this.database.accounts[i].account_name}`,
-        account_number: `${this.database.accounts[i].account_number}`,
-      };
-      this.accounts.push(upNew);
-      console.log("update new" + upNew);
-    }
-  },
 });
 </script>

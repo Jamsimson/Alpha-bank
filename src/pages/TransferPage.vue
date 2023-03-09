@@ -192,5 +192,13 @@ export default defineComponent({
     this.accounts = this.database.accounts;
     this.accoutLength = this.accounts.length;
   },
+  mounted() {
+    const bank = this.$route.params.bank;
+    const account_name = this.$route.params.account_name;
+    const account_number = this.$route.params.account_number;
+    console.log(
+      `Bank:${bank} account name:${account_name} account_number:${account_number}`
+    );
+  },
 });
 </script>

@@ -40,8 +40,10 @@ export default {
       this.result = content;
       console.log(typeof this.result);
       splitData = JSON.parse(this.result);
-      console.log(splitData);
-
+      console.log(splitData.account_name);
+      this.$router.push(
+        `transfer/SCB/${splitData.account_name}/${splitData.account_number}`
+      );
       this.turnCameraOff();
     },
     turnCameraOn() {
