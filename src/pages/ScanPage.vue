@@ -36,14 +36,11 @@ export default {
   //   },
   methods: {
     async onDecode(content) {
-      var splitData_1;
-      var splitData_2;
+      var splitData;
       this.result = content;
       console.log(typeof this.result);
-      splitData_1 = this.result.split("{");
-      splitData_2 = splitData_1[1].split("}");
-      this.json = JSON.parse(`${splitData_2[0]}`);
-      console.log(this.json);
+      splitData = JSON.parse(this.result);
+      console.log(splitData);
 
       this.turnCameraOff();
     },

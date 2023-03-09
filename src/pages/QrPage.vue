@@ -86,7 +86,10 @@ export default defineComponent({
     QrcodeVue,
   },
   mounted() {
-    this.qrcodes = `[${this.database.accounts[0].account_name},${this.database.accounts[0].account_number}]`;
+    this.qrcodes = `{
+    "account_name":"${this.database.accounts[0].account_name}",
+    "account_number":"${this.database.accounts[0].account_number}"
+    }`;
     console.log(this.qrcode);
     this.test = this.database.accounts;
     for (var i = 0; i < this.test.length; i++) {
