@@ -13,6 +13,7 @@
   "dependencies": {
     "@bachdgvn/vue-otp-input": "^1.0.8",
     "@quasar/extras": "^1.0.0",
+    "@quasar/icongenie": "^2.5.4",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "firebase": "^9.17.2",
