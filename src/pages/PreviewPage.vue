@@ -11,6 +11,35 @@
       </q-toolbar>
     </q-header>
     <q-page-container class="q-ma-md">
+      <q-dialog v-model="fixed">
+        <q-card>
+          <q-card-section>
+            <div class="text-h6">Transfer sucessfully</div>
+          </q-card-section>
+
+          <q-separator />
+
+          <div class="text-center">
+            <q-icon name="check_circle" color="green" size="50px" />
+            <div class="text-left q-px-md">
+              <p>Amount: {{ amount }}</p>
+              <p>From: {{ database.username }}</p>
+              <p>To: {{ reciever == "undefined" ? "John" : reciever }}</p>
+            </div>
+          </div>
+          <q-separator />
+
+          <q-card-actions align="right">
+            <q-btn
+              flat
+              label="Go to home"
+              to="/"
+              color="primary"
+              v-close-popup
+            />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
       <q-card
         style="
           border-radius: 15px;
@@ -76,7 +105,7 @@
               color="green-12"
               text-color="indigo-6"
               unelevated
-              to="/"
+              @click="fixed = true"
               label="Confirm"
               no-caps
               style="border-radius: 8px; height: 40px"
@@ -142,6 +171,7 @@ export default defineComponent({
       reciever: ref(""),
       recieverAccount: ref(""),
       recieverBank: ref(""),
+      fixed: ref(false),
     };
   },
   mounted() {
