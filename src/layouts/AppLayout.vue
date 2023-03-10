@@ -34,6 +34,7 @@
         <q-btn
           class="text-black"
           fab
+          to="/scan-qrcode"
           icon="qr_code_scanner"
           color="green-12"
           style="height: 60px; width: 60px"
@@ -57,7 +58,7 @@
           icon="sync_alt"
           label="Transfer"
         />
-        <q-route-tab to="/scan-qrcode" name="scan">
+        <q-route-tab name="scan">
           <span class="q-pt-lg">Scan</span>
         </q-route-tab>
         <q-route-tab
