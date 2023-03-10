@@ -1,6 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf" class="layout-background">
     <!-- heading bar -->
+
     <q-header class="bg-white text-black">
       <q-toolbar>
         <q-toolbar-title>
@@ -25,6 +26,19 @@
     </q-page-container>
 
     <q-footer reveal class="bg-grey-4 rounded-borders fixed-bottom">
+      <q-page-sticky
+        class="fixed-bottom"
+        :offset="[25, 25]"
+        style="height: 10px"
+      >
+        <q-btn
+          class="text-black"
+          fab
+          icon="qr_code_scanner"
+          color="green-12"
+          style="height: 60px; width: 60px"
+        />
+      </q-page-sticky>
       <q-tabs
         v-model="tab"
         class="q-mt-bg text-grey-7"
@@ -32,6 +46,7 @@
         no-caps
         narrow-indicator
         dense
+        style="height: 60px"
         align="justify"
       >
         <q-route-tab to="/home" class="" name="home" icon="home" label="Home" />
@@ -42,13 +57,9 @@
           icon="sync_alt"
           label="Transfer"
         />
-        <q-route-tab
-          to="/scan-qrcode"
-          class=""
-          name="scan"
-          icon="qr_code_scanner"
-          label="Scan"
-        />
+        <q-route-tab to="/scan-qrcode" name="scan">
+          <span class="q-pt-lg">Scan</span>
+        </q-route-tab>
         <q-route-tab
           to="/services"
           class=""
@@ -77,3 +88,4 @@ export default {
   },
 };
 </script>
+
