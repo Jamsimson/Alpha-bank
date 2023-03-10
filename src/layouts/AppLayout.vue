@@ -58,7 +58,7 @@
           icon="sync_alt"
           label="Transfer"
         />
-        <q-route-tab name="scan">
+        <q-route-tab to="/scan-qrcode" name="scan">
           <span class="q-pt-lg">Scan</span>
         </q-route-tab>
         <q-route-tab

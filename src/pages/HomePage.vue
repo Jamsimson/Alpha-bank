@@ -21,14 +21,23 @@
         </div>
         <div class="col flex flex-center">
           <!-- user img -->
-          <img src="img/user icon.png" alt="" style="height: 130px" />
+          <img
+            :src="profile_image"
+            alt=""
+            style="
+              height: 130px;
+              width: 30;
+              border-radius: 20px;
+              object-fit: cover;
+            "
+          />
         </div>
       </div>
     </section>
     <br />
     <!-- section account balance -->
     <section class="section2">
-      <q-card class="my-balance bg-warning">
+      <q-card class="my-balance bg-warning" style="border-radius: 20px">
         <div
           class="row"
           style="height: 90px"
@@ -50,14 +59,33 @@
     <br />
     <!-- section add. -->
     <section class="section3">
-      <q-card class="my-button bg-grey-13 q-pa-md" style="height: 200px">
-        <div class="">advert</div>
-      </q-card>
+      <q-carousel
+        v-model="slide"
+        transition-prev="slide-right"
+        transition-next="slide-left"
+        swipeable
+        animated
+        control-color="grey-8"
+        navigation
+        height="220px"
+      >
+        <!-- loop card for shows accout -->
+        <q-carousel-slide v-for="index in 3" :key="index" :name="index">
+          <q-card
+            class="my-button bg-grey-13 q-pa-md no-shadow"
+            style="height: 150px"
+          >
+            <div class="">ADS</div>
+          </q-card>
+        </q-carousel-slide>
+      </q-carousel>
     </section>
     <!-- section shotcut -->
-    <br />
     <section class="section4">
-      <q-card class="my-shotcut">
+      <q-card
+        class="my-shotcut bg-grey-2 no-shadow"
+        style="border-radius: 20px"
+      >
         <div class="row q-pa-md text-subtitle2" style="height: 200px">
           <!-- button 1: Balance -->
           <div class="col-4">
@@ -170,6 +198,7 @@ export default defineComponent({
         querySnapshot.forEach(async (doc) => {
           console.log(`${doc.id} => ${doc.data()}`);
           this.name = doc.data().name;
+          this.profile_image = doc.data().profile_image;
           // get account data from another collection
           q = query(
             collection(this.$db, "accounts"),
@@ -195,6 +224,8 @@ export default defineComponent({
       name: "",
       account: [],
       balance: 0,
+      slide: 1,
+      profile_image: "",
     };
   },
   methods: {
