@@ -1,56 +1,62 @@
 <template>
-  <q-page class="q-pa-md">
-    <div class="q-gutter-sm">
-      <q-radio v-model="shape" val="line" label="Line" />
-      <q-radio v-model="shape" val="rectangle" label="Rectangle" />
-      <q-radio v-model="shape" val="ellipse" label="Ellipse" />
-      <q-radio v-model="shape" val="polygon" label="Polygon" />
-    </div>
-    <div class="q-px-sm">
-      Your selection is: <strong>{{ shape }}</strong>
-    </div>
-    <div>
-      <qrcode-vue :value="shape" :size="size" level="H" />
+  <q-page>
+    <div class="flex flex-center">
+      <div v-if="showCamera">
+        <qrcode-stream @init="onInit" :camera="camera" @decode="onDecode">
+        </qrcode-stream>
+      </div>
+      <p class="text-subtitle1" v-if="result">
+        Last result: <b>{{ result }}</b>
+      </p>
     </div>
   </q-page>
 </template>
+
+<style></style>
+
 <script>
-import { ref } from "vue";
-import QrcodeVue from "qrcode.vue";
-import { alpha_database } from "../stores/database";
+import { QrcodeStream } from "vue3-qrcode-reader";
 export default {
-  setup() {
-    return {
-      shape: ref("line"),
-    };
-  },
+  name: "TestPage",
+  components: { QrcodeStream },
   data() {
     return {
-      database: alpha_database(),
-      x: "",
-      value: "",
-      message: null,
-      size: 120,
-      accounts: [],
+      isValid: undefined,
+      camera: "auto",
+      result: null,
+      json: [],
+      showCamera: true,
     };
   },
-  components: {
-    QrcodeVue,
-  },
-  mounted() {
-    const id = this.$route.params.id;
-    console.log(id);
-    this.value = `${id};123456768`;
-    var data = this.database.getDataById(2);
-    console.log(`${data.username} ${data.email}`);
-    for (var i = 0; i < data.accounts.length; i++) {
-      console.log(`${data.accounts[i].id}`);
-    }
-  },
+
   methods: {
-    getMessageQr() {
-      this.message = `${this.model}`;
-      console.log(`${this.message}`);
+    async onDecode(content) {
+      var splitData;
+      this.result = content;
+      console.log(typeof this.result);
+      splitData = JSON.parse(this.result);
+      console.log(splitData.account_name);
+      this.$router.push(
+        `transfer/SCB/${splitData.account_name}/${splitData.account_number}`
+      );
+      this.turnCameraOff();
+    },
+    turnCameraOn() {
+      this.camera = "auto";
+      this.showCamera = true;
+    },
+    turnCameraOff() {
+      this.camera = "off";
+      this.showCamera = false;
+    },
+    async onInit(promise) {
+      try {
+        await promise;
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.showScanConfirmation = this.camera === "off";
+      }
     },
   },
 };
