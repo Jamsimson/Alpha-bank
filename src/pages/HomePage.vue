@@ -199,6 +199,7 @@ export default defineComponent({
           console.log(`${doc.id} => ${doc.data()}`);
           this.name = doc.data().name;
           this.profile_image = doc.data().profile_image;
+          this.database.setImageProfile(this.profile_image);
           // get account data from another collection
           q = query(
             collection(this.$db, "accounts"),

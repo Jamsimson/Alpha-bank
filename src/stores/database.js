@@ -6,6 +6,7 @@ export const alpha_database = defineStore({
     accounts: [],
     counter: 1,
     user: [],
+    image: null,
   }),
   actions: {
     getDataById(id) {
@@ -29,6 +30,10 @@ export const alpha_database = defineStore({
     setSignedInUser(user) {
       this.user = user;
       console.log(`set user ${user}`);
+    },
+    setImageProfile(image) {
+      this.image = image;
+      console.log(`set image ${image}`);
     },
   },
 });

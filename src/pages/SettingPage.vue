@@ -26,7 +26,12 @@
       <!-- user -->
       <q-item clickable v-ripple>
         <q-item-section avatar>
-          <img src="img/user icon.png" alt="" class="usericon" />
+          <img
+            :src="database.image"
+            alt=""
+            class="usericon"
+            style="width: 50px; height: 50px; object-fit: cover"
+          />
         </q-item-section>
         <q-item-section>{{ database.username }}</q-item-section>
       </q-item>
