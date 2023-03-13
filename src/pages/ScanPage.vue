@@ -2,7 +2,8 @@
   <q-page>
     <div class="flex flex-center">
       <div v-if="showCamera">
-        <qrcode-stream :camera="camera" @decode="onDecode"> </qrcode-stream>
+        <qrcode-stream @init="onInit" :camera="camera" @decode="onDecode">
+        </qrcode-stream>
       </div>
       <p class="text-subtitle1" v-if="result">
         Last result: <b>{{ result }}</b>
