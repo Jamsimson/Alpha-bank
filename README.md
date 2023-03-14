@@ -1,4 +1,4 @@
-# Quasar App (alpha-app)
+# Alpha bank
 
 A Quasar Project
 
