@@ -232,6 +232,10 @@ export default defineComponent({
                 console.log(doc.data().balance);
                 const newBalance = doc.data().balance - this.amount;
                 console.log(newBalance);
+                if (doc.data().balance < this.amount) {
+                  alert("You don't have enough money to transfer");
+                  return;
+                }
                 await updateDoc(doc.ref, {
                   balance: newBalance,
                 })
