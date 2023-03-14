@@ -105,7 +105,7 @@
               color="green-12"
               text-color="indigo-6"
               unelevated
-              @click="fixed = true"
+              @click="tranfer"
               label="Confirm"
               no-caps
               style="border-radius: 8px; height: 40px"
@@ -132,6 +132,15 @@
 import { defineComponent } from "vue";
 import { alpha_database } from "../stores/database";
 import { ref } from "vue";
+import { onAuthStateChanged } from "@firebase/auth";
+// update firebase
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 const friendList = [
   {
@@ -192,6 +201,58 @@ export default defineComponent({
     this.name = this.database.username;
     this.accounts = this.database.accounts;
     this.accoutLength = this.accounts.length;
+  },
+  methods: {
+    async tranfer() {
+      onAuthStateChanged(this.$auth, async (user) => {
+        if (user) {
+          const signedInUserEmail = user.email;
+          // console.log(this.signedInUser.email);
+          var q = query(
+            collection(this.$db, "users"),
+            where("email", "==", signedInUserEmail)
+          );
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach(async (doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+            this.name = doc.data().name;
+            this.profile_image = doc.data().profile_image;
+            this.database.setImageProfile(this.profile_image);
+            // get account data from another collection
+            q = query(
+              collection(this.$db, "accounts"),
+              where("owner", "==", doc.id)
+            );
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach(async (doc) => {
+              if (
+                doc.data().account_number == this.accounts[0].account_number
+              ) {
+                console.log("found");
+                console.log(doc.data().balance);
+                const newBalance = doc.data().balance - this.amount;
+                console.log(newBalance);
+                await updateDoc(doc.ref, {
+                  balance: newBalance,
+                })
+                  .then(() => {
+                    console.log("Document successfully updated!");
+                    this.fixed = true;
+                  })
+                  .catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                    alert("Error updating document: ", error);
+                  });
+              }
+              console.log(`${doc.id} => ${doc.data()}`);
+            });
+          });
+        } else {
+          this.$router.push("start");
+        }
+      });
+    },
   },
 });
 </script>
